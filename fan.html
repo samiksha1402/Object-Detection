@@ -1,0 +1,76 @@
+<html>
+<head>
+
+	<title>Fan Detection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body background="https://wallpaperaccess.com/full/2963436.jpg">
+    <center>
+        <h1 class="btn btn-primary imgheading">Fan</h1>
+        <br><br>
+        <a href="index.html" class="btn" id="back_btn">Back</a>
+        <br>
+        <h2 class="btn btn-danger" id="status"></h2>
+        <br>
+    </center>
+    <script>
+    Status = "";
+    fan_image = "";
+    
+   objects=[];
+
+function preload(){
+    fan_image = loadImage("fan.png");
+}
+
+function setup(){
+    canvas = createCanvas(640,350);
+    canvas.center();
+    object_Detector = ml5.objectDetector('cocossd',modelLoaded);
+    document.getElementById("status").innerHTML = "Status: Detecting Objects";
+}
+
+function modelLoaded(){
+    console.log("Model Loaded!");
+    Status = true;
+    object_Detector.detect(fan_image,gotResults);
+}
+
+function gotResults(error,results){
+    if(error){
+        console.error(error);
+    }
+    console.log(results);
+    objects=results;
+}
+
+function draw(){
+   
+    
+    if(Status!=""){
+      image(fan_image, 0,0,640,350);
+        for(i=0;i<objects.length;i++){
+            document.getElementById("status").innerHTML= "Status: Object Detected";
+            fill(255,0,0);
+            percent= floor(objects[i].confidence*100);
+            textSize(20);
+            text(objects[i].label+" "+ percent+ "%",objects[i].x+15,objects[i].y+20);
+            noFill();
+            stroke(255,0,0);
+            rect(objects[i].x,objects[i].y,objects[i].width,objects[i].height);
+        }
+    }
+}
+</script>
+    </body>
+    </html>

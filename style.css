@@ -1,0 +1,60 @@
+body{
+    background-position: center;
+    background-size: cover;
+}
+.btn{
+    font-size: 20px;
+   
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 15px;
+}
+.head{
+    font-size: 20px;
+    background-color: aliceblue;
+    border-radius: 10px;
+    width: 300px;
+    margin-top: 15px;
+
+}
+.head:hover {
+    font-size: 25px;
+    text-decoration: underline;
+}
+.btn:hover {
+    font-size: 25px;
+    text-decoration: underline;
+}
+.heading{
+width: 300px;
+height: 40px;
+font-size: 30px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+background-color: rgb(200, 118, 255);
+padding: 2px;
+
+}
+.imgheading{
+    width: 100%;
+    font-size: larger;
+    margin-top: 0px;
+}
+.imgheading:hover{
+    font-size: large;
+}
+.link{
+    background-color: black;
+    border-radius: 10px;
+    width: 80px;
+    float: right;
+}
+canvas{
+    border-radius: 10px;
+    box-shadow: 7px 7px 7px grey;
+}
+#back_btn{
+    float: right;
+    background-color: azure;
+    width: 80px;
+    margin-right: 30px;
+}
